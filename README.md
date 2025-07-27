@@ -1,3 +1,7 @@
+## Updated
+
+Based on [vnc-browser](https://github.com/MRColorR/vnc-browser), the only update (so far) is to create an alpine-updated.dockerfile which improves on the original by installing some more fonts and automatically installing uBlock Origin
+
 # VNC-Browser 
 A Lightweight, Ready-to-Use Web Browsing Environment in Docker with VNC Access
 
