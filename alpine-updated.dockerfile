@@ -85,6 +85,15 @@ RUN chmod +x /usr/local/bin/base_entrypoint.sh /usr/local/bin/customizable_entry
 # Expose the standard VNC and noVNC ports
 EXPOSE ${VNC_PORT} ${NOVNC_WEBSOCKIFY_PORT}
 
+# Download Tailscale and install
+RUN wget https://pkgs.tailscale.com/stable/tailscale_1.86.0_amd64.tgz && \
+    tar -xzf tailscale_1.86.0_amd64.tgz && \
+    cp tailscale_1.86.0_amd64/tailscale /usr/local/bin/ && \
+    cp tailscale_1.86.0_amd64/tailscaled /usr/local/bin/ && \
+    chmod +x /usr/local/bin/tailscale /usr/local/bin/tailscaled && \
+    rm -rf tailscale_1.86.0_amd64*
+
+
 # Set tini as the entrypoint and the custom script as the command
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/usr/local/bin/customizable_entrypoint.sh"]
